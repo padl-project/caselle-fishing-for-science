@@ -1,0 +1,63 @@
+---
+title: "QA/QC Fishing For Science Data"
+author: "Camila Vargas"
+date: "2/15/2022"
+output: html_document
+---
+
+## Set-up
+```{r setup, include=FALSE}
+
+## Load packages
+library(here)
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(freeR)
+
+## Sets R not to use scientific notations
+options(scipen=999) 
+
+```
+
+## Read Data
+```{r}
+daily_log_raw <- read_csv(here::here("6.raw_data/Daily_Log_FishingForScience.csv"))
+
+tag_raw <- read_csv(here::here("6.raw_data/Tagging_data_FishingForScience.csv"))
+
+```
+
+
+## Exploring
+```{r}
+str(daily_log_raw)
+colnames(daily_log_raw)
+complete(daily_log_raw)
+
+sort(unique(daily_log_raw$TripID))
+sort(unique(daily_log_raw$Date))
+sort(unique(daily_log_raw$Area))
+sort(unique(daily_log_raw$`Envirmomental Conditions`))
+sort(unique(daily_log_raw$Guide))
+sort(unique(daily_log_raw$`Gear Type`))
+sort(unique(daily_log_raw$`Movement  Mode`))
+sort(unique(daily_log_raw$`Primary Target`))
+sort(unique(daily_log_raw$Notes))
+```
+
+- Column `Date` is class character. Format "mm/dd/yyyy"
+- Column 13 to 36 are species name. Format = common name (scientific name)
+- Column `Longnose Emperor (Lethrinus olivaceus)` has 1 NA
+- Column `Area` has values for Zone 2 and Zone_2, are these the same? Same for Zone, 3,4,5, and 6.
+- Do we need coordinates for column `Area`?
+- Should `Environmental Conditions` be harmonized?
+
+
+
+
+
+
+
+
+
