@@ -30,6 +30,8 @@ tag_raw <- read_csv(here::here("6.raw_data/Tagging_data_FishingForScience.csv"))
 
 
 ## Exploring
+
+1. Daily Logs
 ```{r}
 str(daily_log_raw)
 colnames(daily_log_raw)
@@ -54,6 +56,53 @@ sort(unique(daily_log_raw$Notes))
 - Should `Environmental Conditions` be harmonized?
 
 
+2. Tags
+
+```{r}
+str(tag_raw)
+
+sort(unique(tag_raw$TripID))
+sort(unique(tag_raw$Date))
+sort(unique(tag_raw$Area))
+sort(unique(tag_raw$Guide))
+sort(unique(tag_raw$Angler))
+sort(unique(tag_raw$`Species Code`))
+sort(unique(tag_raw$`Species Name`))
+sort(unique(tag_raw$Targeted))
+sort(unique(tag_raw$Tagged))
+sort(unique(tag_raw$`Fork Length (cm)`))
+sort(unique(tag_raw$`Total Length (cm)`))
+sort(unique(tag_raw$`Tag ID (5 character)`))
+sort(unique(tag_raw$ReCap))
+sort(unique(tag_raw$`Release Condition`))
+sort(unique(tag_raw$`Gear Type`))
+sort(unique(tag_raw$`GPS#`))
+sort(unique(tag_raw$`Movement Method`))
+sort(unique(tag_raw$PrimaryTarget))
+sort(unique(tag_raw$Notes))
+
+```
+
+
+- Change column date to class date, format "mm/dd/yyyy"
+- Area: Fix "Downeast" = "Down East", "Keyhole" = "Key Hole", "Smitty's" = "Smittys".
+- Area: is West lagoon the same than Western Lagoon?
+- Angler: Are Alana and Alena different person?
+- Species Name: miss spelled "Cephlapholus argus" = "Cephalopholis argus".
+- Species Name: Which one is correct? "Lutjanus fuluvus" or "Lutjanus fulvus"
+- Species Name: Which one is correct? "Lutjanus monostigma" or "Lutjanus monstigma"
+- Species Name: Which one is correct? "Scomberiodes lysan" or "Scomberoides lysan"
+- Fork Length and Total Length: change "NO DATA" to NA
+- tag ID 5 characters: Is "EFA##" correct?, remove space from ""EFA 21"?, change "NO DATA" to NA
+- ReCap: Change "NO DATA" to NA
+- Clean colnames
+
+
+--------------------------------------------
+Areas in Daily Log that are not in tag therefore there is no coords
+"Frigate Flat"
+"North Forreef"
+"South Forreef"
 
 
 
