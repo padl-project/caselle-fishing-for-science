@@ -84,7 +84,7 @@ sort(unique(tag_raw$Notes))
 ```
 
 
-- Change column date to class date, format "mm/dd/yyyy"
+- Change column date to class date, format "mm/dd/yyyy" use `date = mdy(date)`?
 - Area: Fix "Downeast" = "Down East", "Keyhole" = "Key Hole", "Smitty's" = "Smittys".
 - Area: is West lagoon the same than Western Lagoon?
 - Angler: Are Alana and Alena different person?
