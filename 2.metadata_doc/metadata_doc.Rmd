@@ -1,7 +1,7 @@
 ---
-title: "ADD TILE"
-author: "ADD AUTHOR"
-date: "ADD DATE"
+title: "Fishing For Science"
+author: "Peter Carlson - Caselle Lab"
+date: "2022-06-07"
 output: word_document
 ---
 
@@ -223,12 +223,12 @@ flextable(geo_loc_table) %>%
 
 ```
 
-**Copy this block to add multiple points or areas.**_
+<!--**Copy this block to add multiple points or areas.**_
 
-**Verbal description:**
+**Verbal description:** -->
 
 
-```{r, geographic location table 2, echo = FALSE, message= FALSE, warning= FALSE}
+```{r, geographic location table 2, echo = FALSE, message= FALSE, warning= FALSE, include=FALSE}
 
 coordinate <- c(" ", " ", " ", " ")
 
@@ -277,7 +277,7 @@ flextable::flextable(provenance_table) %>%
 
 
 
-## 13. Data Table
+<!--## 13. Data Table
 
 Each row in the below table describes one column in your data table.  Complete each row as follows:
 
@@ -286,6 +286,7 @@ Each row in the below table describes one column in your data table.  Complete e
 - **Date format:** Please tell us exactly how the date and time are formatted: e.g., mm/dd/yyyy hh:mm:ss, plus the time zone and whether daylight savings were observed.  ISO date format of YYYY-MM-DD or YYYY-MM-DD hh:mm:ss is preferred.
 - **Missing value code:** If a code for ‘no data’ is used, please specify: e.g., -99999, NA
 - **Missing value code Explanation:** Why are these values missing? e.g.: value not available, value not recorded.
+
 
 
 ```{r, table description, echo = FALSE, message= FALSE, warning= FALSE}
@@ -304,14 +305,14 @@ flextable::flextable(table_table) %>%
 ```
 
 <br>
+-->
 
-
-```{r, create data attributes tables, echo = FALSE, message= FALSE, warning= FALSE}
+```{r, create data attributes tables, echo = FALSE, message= FALSE, warning= FALSE, include=FALSE}
 
 ## Location of datasets in the package
 
-path_data <- here::here("7.clean_data")
-path_templates <- here::here("3.data_attributes")
+# path_data <- here::here("7.clean_data")
+# path_templates <- here::here("3.data_attributes")
 
 #-----------------------------------------------------------------#
 
@@ -336,38 +337,38 @@ path_templates <- here::here("3.data_attributes")
 ## If there is more than one data set in 7.clean_data, run this code
 
 ## Create table with all the file names
-files_names <- tibble(
-  list.files(path_data, pattern = "csv")) %>% 
-  rename(file_name = 1) %>% 
-  mutate(file_name = str_remove(file_name, ".csv"),
-         attribute_name = paste0("data_attributes", 1:n()),
-         position = 1:n())
+#files_names <- tibble(
+# list.files(path_data, pattern = "csv")) %>% 
+#  rename(file_name = 1) %>% 
+#  mutate(file_name = str_remove(file_name, ".csv"),
+#        attribute_name = paste0("data_attributes", 1:n()),
+#        position = 1:n())
 
 ## Creating the attribute .txt
 
-for (i in files_names$file_name){
-
-  EMLassemblyline::template_table_attributes(
-  path = path_templates,
-  data.path = path_data,
-  data.table = paste0(i, ".csv"))
-}
+# for (i in files_names$file_name){
+# 
+#   EMLassemblyline::template_table_attributes(
+#   path = path_templates,
+#   data.path = path_data,
+#   data.table = paste0(i, ".csv"))
+# }
 
 ## reading text into a data frame
 
 ##General function
-read_attribute <- function(test){
-  
-  read.delim2(here::here(paste0("3.data_attributes/attributes_", test, ".txt"))) %>% 
-  mutate(unit = case_when(unit == "!Add units here!" ~ "*"))
-}
-
-## Loop to read and name each file 
-for (i in files_names$position){
-  
-  assign(files_names$attribute_name[i], read_attribute(files_names$file_name[i]))
-
-  }
+# read_attribute <- function(test){
+#   
+#   read.delim2(here::here(paste0("3.data_attributes/attributes_", test, ".txt"))) %>% 
+#   mutate(unit = case_when(unit == "!Add units here!" ~ "*"))
+# }
+# 
+# ## Loop to read and name each file 
+# for (i in files_names$position){
+#   
+#   assign(files_names$attribute_name[i], read_attribute(files_names$file_name[i]))
+# 
+#   }
 
 
 ```
@@ -376,48 +377,50 @@ for (i in files_names$position){
 
 ```{r, attribute table 1, echo=FALSE, message= FALSE, warning= FALSE}
 
-flextable::flextable(data_attributes1) %>% 
-  width(width = 1)
+# flextable::flextable(data_attributes1) %>% 
+#   width(width = 1)
 
 ```
 
 
 ```{r, attribute table 2, echo=FALSE, message= FALSE, warning= FALSE}
 
-flextable::flextable(data_attributes2) %>% 
-  width(width = 1)
+# flextable::flextable(data_attributes2) %>% 
+#   width(width = 1)
 
 ```
+
+<!--
 
 ## 14. Attributes code
 
 _If you use codes in your column, please define each code in the following table. **Fill in only if necessary**_ 
 
-
+-->
 
 ```{r, attribute code, echo = FALSE, message= FALSE, warning= FALSE}
 
 ## Note: there can only be one file with he prefix attribute_ in the data attribute folder.
-EMLassemblyline::template_categorical_variables(
-  path = path_templates,
-  data.path = path_data)
-
-# **UPDATE NAMES**
-
-cat_vars <- read.delim2(here::here(paste0("3.data_attributes/catvars_", file1_name,".txt")))
+# EMLassemblyline::template_categorical_variables(
+#   path = path_templates,
+#   data.path = path_data)
+# 
+# # **UPDATE NAMES**
+# 
+# cat_vars <- read.delim2(here::here(paste0("3.data_attributes/catvars_", file1_name,".txt")))
 
 ```
 
 
 ```{r, categorical variables table, echo=FALSE, message= FALSE, warning= FALSE}
 
-flextable::flextable(cat_vars) %>%
-  autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
-  
+# flextable::flextable(cat_vars) %>%
+#   autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
+#   
 
 ```
 
-
+-->
 
 <!-- ### Spatial data objects
 
@@ -437,98 +440,95 @@ Number of Columns
 Number of Verticals
 Cell Geometry (e.g. pixel) -->
 
-
+<!--
 ## 15. Scripts/code (software)
 
 _List any software scripts/code you would like to archive along with your data. These may include processing scripts you wrote to create, clean, or analyze the data._
-
+-->
 
 ```{r, script info, echo = FALSE, message= FALSE, warning= FALSE}
 
-file_name <- " "
-description <- " "
-language <- " "
-
-
-script_info_colnames <- c("Filename", "Description", "Scripting language")
-
-
-script_info <- tibble(file_name, description, language)
-
-colnames(script_info) <- script_info_colnames
+# file_name <- " "
+# description <- " "
+# language <- " "
+# 
+# 
+# script_info_colnames <- c("Filename", "Description", "Scripting language")
+# 
+# 
+# script_info <- tibble(file_name, description, language)
+# 
+# colnames(script_info) <- script_info_colnames
 
 ```
 
 
 ```{r, script info export, echo=FALSE, message= FALSE, warning= FALSE}
 
-flextable::flextable(script_info) %>% 
-  autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
+# flextable::flextable(script_info) %>% 
+#   autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
 ```
 
 
 
 
-## 16. Other objects (misc.)
-_List any other objects (e.g., .zip, .pdf, etc.) you would like to archive._
+<!-- ## 16. Other objects (misc.) -->
+<!-- _List any other objects (e.g., .zip, .pdf, etc.) you would like to archive._ -->
 
-**Note:** At the moment, we are not including any photographic data.
-
+<!-- **Note:** At the moment, we are not including any photographic data. -->
 
 ```{r, other objects, echo = FALSE, message= FALSE, warning= FALSE}
 
-misc_file_name <- " "
-misc_description <- " "
-misc_data_type <- " "
-
-
-other_obj_colnames <- c("Filename", "Description", "Data type")
-
-other_objects <- tibble(misc_file_name, misc_description, misc_data_type)
-
-colnames(other_objects) <- other_obj_colnames
+# misc_file_name <- " "
+# misc_description <- " "
+# misc_data_type <- " "
+# 
+# 
+# other_obj_colnames <- c("Filename", "Description", "Data type")
+# 
+# other_objects <- tibble(misc_file_name, misc_description, misc_data_type)
+# 
+# colnames(other_objects) <- other_obj_colnames
 
 ```
 
 
 ```{r, other objects export, echo=FALSE, message= FALSE, warning= FALSE}
 
-flextable::flextable(other_objects) %>% 
-  autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
+# flextable::flextable(other_objects) %>% 
+#   autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
 ```
 
 
-## 17. Articles
-_List articles citing this dataset. Add as many rows as necessary_
+<!-- ## 17. Articles -->
+<!-- _List articles citing this dataset. Add as many rows as necessary_ -->
 
 
 ```{r, publications, echo = FALSE, message= FALSE, warning= FALSE}
 
-doi <- " "
-article_title <- " "
-journal <- " "
-
-
-publications_colnames <- c("Article DOI or URL (DOI is preferred)", "Article title", "Journal title")
-
-publications <- tibble(doi, article_title, journal)
-
-colnames(publications) <- publications_colnames
+# doi <- " "
+# article_title <- " "
+# journal <- " "
+# 
+# 
+# publications_colnames <- c("Article DOI or URL (DOI is preferred)", "Article title", "Journal title")
+# 
+# publications <- tibble(doi, article_title, journal)
+# 
+# colnames(publications) <- publications_colnames
 
 ```
 
 
 ```{r, publications export, echo=FALSE, message= FALSE, warning= FALSE}
 
-flextable::flextable(publications) %>% 
-  autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
+# flextable::flextable(publications) %>% 
+#   autofit(add_w = 0.2, add_h = 0.1, part = c("body", "header"), unit = "in")
 ```
 
 
-## Notes, Comments, and Questions
-_Please let us know if you have any additional comments or questions about your data or the EML information. THANK YOU!_
-
-
+<!-- ## Notes, Comments, and Questions -->
+<!-- _Please let us know if you have any additional comments or questions about your data or the EML information. THANK YOU!_ -->
 
 
 
